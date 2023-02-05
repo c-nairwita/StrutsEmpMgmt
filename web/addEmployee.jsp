@@ -18,7 +18,7 @@
 
         <div class="container">
             <c:if test="${not empty SuccessMsg}">
-                <h1 style="color: whitesmoke"><c:out value="${SuccessMsg}"/></h1>
+                <h1 style="color: darkgreen"><c:out value="${SuccessMsg}"/></h1>
                 <c:remove var="SuccessMsg" scope="session"/>
                 <% response.setHeader("Refresh", "3;url=employeeDetails.jsp");%>
             </c:if>
@@ -30,7 +30,7 @@
         <main class="form-control w-25 m-auto p-3">
             <div class="mb-3">
                 <div class="card-header">
-
+                    <img class="mb-5" src="images/Exavalu_Logo.png" alt="" width="300" height="100">
                     <h1 class="h3 mb-3 fw-normal text-center" style="color: #301934"><b>Add New Employee</b></h1>
                 </div>
                 <form action="AddEmployee" method="Post">
@@ -90,7 +90,7 @@
                         <label for="floatingInput">Special Allowance</label>
                     </div>
                     <br>
-                    <button class="w-50 btn btn-lg btn-primary" style="background-color: #301934; border: none" type="submit">Save</button>
+                    <button class="w-50 btn btn-lg btn-primary" style="background-color: #8B0000; border: none" type="submit">Save</button>
                 </form>
             </div>              
         </main>
