@@ -1,0 +1,37 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="default" namespace="/" extends="struts-default">
+        <action name="Login" class="com.exavalu.models.Users" method="doLogin">
+            <result name="SUCCESS">employeeDetails.jsp</result>
+            <result name="FAILURE">login.jsp</result>
+        </action>
+        <action name="Logout" class="com.exavalu.models.Users" method="doLogout">
+            <result name="SUCCESS">landingPage.jsp</result>
+            <result name="FAILURE">error.jsp</result>
+        </action>  
+        <action name="EditEmployee" class="com.exavalu.models.Employee" method="doEditEmployee">
+            <result name="SUCCESS">editEmployee.jsp</result>
+            <result name="FAILURE">employeeDetails.jsp</result>
+        </action> 
+        <action name="SaveEmployee" class="com.exavalu.models.Employee" method="doSaveEmployee">
+            <result name="SUCCESS">employeeDetails.jsp</result>
+            <result name="FAILURE">editEmployee.jsp</result>
+        </action>
+        <action name="DeleteEmployee" class="com.exavalu.models.Employee" method="doDeleteEmployee">
+            <result name="SUCCESS">employeeDetails.jsp</result>
+            <result name="FAILURE">employeeDetails.jsp</result>
+        </action>
+        <action name="AddEmployee" class="com.exavalu.models.Employee" method="doAddEmployee">
+            <result name="SUCCESS">addEmployee.jsp</result>
+            <result name="FAILURE">addEmployee.jsp</result>
+        </action>  
+        <action name="SearchEmployee" class="com.exavalu.models.Employee" method="doSearchEmployee">
+            <result name="SUCCESS">searchEmployee.jsp</result>
+            <result name="FAILURE">employeeDetails.jsp</result>
+        </action>      
+    </package>
+</struts>
