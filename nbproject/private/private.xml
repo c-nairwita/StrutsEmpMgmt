@@ -3,9 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/WebDevelopment/StrutsEmpMgmt/src/java/com/exavalu/models/Users.java</file>
             <file>file:/D:/WebDevelopment/StrutsEmpMgmt/web/menu.jsp</file>
-            <file>file:/D:/WebDevelopment/StrutsEmpMgmt/web/searchEmployee.jsp</file>
-            <file>file:/D:/WebDevelopment/StrutsEmpMgmt/web/login.jsp</file>
+            <file>file:/D:/WebDevelopment/StrutsEmpMgmt/src/java/com/exavalu/services/LoginService.java</file>
+            <file>file:/D:/WebDevelopment/StrutsEmpMgmt/web/signup.jsp</file>
+            <file>file:/D:/WebDevelopment/StrutsEmpMgmt/src/java/struts.xml</file>
         </group>
     </open-files>
 </project-private>

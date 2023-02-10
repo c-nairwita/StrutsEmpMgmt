@@ -27,6 +27,9 @@ public class Users extends ActionSupport implements ApplicationAware, SessionAwa
     private String lastName;
     private String emailAddress;
     private String password;
+    private String countryCode;
+    private String stateCode;
+    private String distCode;
     private int status;
 
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
@@ -60,6 +63,47 @@ public class Users extends ActionSupport implements ApplicationAware, SessionAwa
         }
 
         return result;
+    }
+    
+    public String doPreSignUp() throws Exception{
+        String result = "SUCCESS";
+        ArrayList countryList = LoginService.getInstance().getAllCountries();
+        
+        sessionMap.put("CountryList", countryList);
+        //sessionMap.put("Users", this);
+        System.err.println("Country code = "+this.countryCode);
+        
+        
+        if(this.countryCode != null){
+            ArrayList stateList = LoginService.getInstance().getAllStates(this.countryCode);
+            sessionMap.put("StateList", stateList);
+            sessionMap.put("Users", this);
+        }
+        if(this.countryCode != null && this.stateCode != null){
+            ArrayList districtList = LoginService.getInstance().getAllDistricts(this.stateCode);
+            sessionMap.put("DistrictList", districtList);
+            sessionMap.put("Users", this);
+        }
+        
+        
+        return result;
+    }
+    
+    public String doSignUp() throws Exception {
+        String result = "FAILURE";
+        
+        boolean success = LoginService.getInstance().doSignUp(this);
+
+        if (success) {
+            result = "SUCCESS";
+            sessionMap.put("SuccessSignUp", "Successfully Registered");
+
+        } else {
+            sessionMap.put("FailSignUp", "Please Try Again");
+        }
+        System.out.println(sessionMap);
+        return result;
+
     }
     
     public String doLogout() {
@@ -152,6 +196,48 @@ public class Users extends ActionSupport implements ApplicationAware, SessionAwa
      */
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+
+    /**
+     * @return the countryCode
+     */
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    /**
+     * @param countryCode the countryCode to set
+     */
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
+    }
+
+    /**
+     * @return the stateCode
+     */
+    public String getStateCode() {
+        return stateCode;
+    }
+
+    /**
+     * @param stateCode the stateCode to set
+     */
+    public void setStateCode(String stateCode) {
+        this.stateCode = stateCode;
+    }
+
+    /**
+     * @return the distCode
+     */
+    public String getDistCode() {
+        return distCode;
+    }
+
+    /**
+     * @param distCode the distCode to set
+     */
+    public void setDistCode(String distCode) {
+        this.distCode = distCode;
     }
 
 }
