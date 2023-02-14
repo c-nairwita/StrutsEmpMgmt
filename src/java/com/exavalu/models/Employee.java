@@ -4,6 +4,7 @@
  */
 package com.exavalu.models;
 
+import com.exavalu.services.APIService;
 import com.exavalu.services.DepartmentService;
 import com.exavalu.services.EmployeeService;
 import com.exavalu.services.RoleService;
@@ -16,6 +17,7 @@ import org.apache.struts2.dispatcher.ApplicationMap;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.ApplicationAware;
 import org.apache.struts2.interceptor.SessionAware;
+import org.json.simple.parser.ParseException;
 
 /**
  *
@@ -152,6 +154,19 @@ public class Employee extends ActionSupport implements ApplicationAware, Session
             sessionMap.put("ErrorMsg", errorMsg);
         }
         return res;
+    }
+    public String doGetDataFromAPI() throws ParseException{
+        String result = "FAILURE";
+        ArrayList apiUsers = APIService.consumeFromAPI();
+        RestAPIuser apiUser = new RestAPIuser();
+        boolean res = APIService.insertIntoDB(apiUsers);
+        if(!apiUsers.isEmpty()){
+            result = "SUCCESS";
+            sessionMap.put("APIUsers", apiUsers);
+            sessionMap.put("RestAPIuser", apiUser);
+            return result;
+        }
+        return result;
     }
     
 

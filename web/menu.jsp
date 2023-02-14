@@ -22,6 +22,7 @@
                     <li><a href="addEmployee.jsp" class="nav-link px-2 text-white">Add</a></li>
                     <li><a href="searchEmployee.jsp" class="nav-link px-2 text-white">Search</a></li>
                     <li><a href="editEmployee.jsp" class="nav-link px-2 text-white">Update</a></li>
+                    <li><a href="ConsumeAPI" class="nav-link px-2 text-white">Get API Data</a></li>
 <!--                    <li><a class="nav-link px-2 text-white" href="#">
                             <c:if test="${not empty Users}">
                                 Welcome: 

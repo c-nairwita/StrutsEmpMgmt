@@ -18,12 +18,22 @@
         <link href="css/signin.css" rel="stylesheet">
 
     </head>
+    <script src="https://code.jquery.com/jquery-3.6.3.js" 
+                        integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" 
+                        crossorigin="anonymous">
+    </script>
     <script>
-        function valueFunc() {
-            //location.href="PreSignUp";
-            //document.getElementById("demo").innerHTML = document.getElementById("countryCode").value;
-            signupForm.setAttribute("action","PreSignUp");
-            signupForm.submit();
+        function fetchContent(selectedId, targetId)
+        {
+            $.ajax({
+                url: 'PreSignUp',
+                data: {
+                    [selectedId]: $("#" + selectedId).val()
+                },
+                success: function (responseText){
+                    $("#" + targetId).html(responseText);
+                }
+            });
         }
     </script>
 
@@ -32,7 +42,7 @@
 
         <main class="form-signin w-100 m-auto">
             <form action="SignUp" method="post" id="signupForm">
-                
+
                 <img class="mb-4" src="images/flower-logo.jpg" alt="" width="200" height="200">
                 <h1 class="h3 mb-3 fw-normal">Please provide below information</h1>
 
@@ -52,43 +62,29 @@
                     <input type="text" class="form-control" id="lastName" name="lastName" placeholder="last name" value ="${Users.getLastName()}" >
                     <label for="firstName">Last Name</label>
                 </div>
-                <div class="form-floating">
-                    <select name="countryCode" class="form-select" id="countryCode" onchange="valueFunc()" required>
+                <div class="form-floating">                        
+                    <select name="countryCode" class="form-select" id="countryCode" onchange="fetchContent('countryCode', 'stateCode')">
                         <option value="">Select a Country</option>
                         <c:forEach items="${CountryList}" var="country">
                             <option value=${country.getCountryCode()} <c:if test="${country.getCountryCode().equalsIgnoreCase(Users.getCountryCode())}"> selected </c:if>> ${country.getCountryName()}  </option>
-                        </c:forEach>
+                        </c:forEach>                       
                     </select>
                 </div>
                 <div class="form-floating">
-                    <select name="stateCode" class="form-select" id="stateCode" onchange="valueFunc()" required>
+                    <select name="stateCode" class="form-select" id="stateCode" onchange="fetchContent('stateCode', 'distCode')">
                         <option value="">Select a State</option>
-                        <c:forEach items="${StateList}" var="province">
-                            <option value=${province.getStateCode()} <c:if test="${province.getStateCode().equalsIgnoreCase(Users.getStateCode())}"> selected </c:if>> ${province.getStateName()}  </option>
-                        </c:forEach>
                     </select>
                 </div>
                 <div class="form-floating">
                     <select name="distCode" class="form-select" id="distCode" onchange="submitform()" required>
                         <option value="">Select a District</option>
-                        <c:forEach items="${DistrictList}" var="district">
-                            <option value=${district.getDistCode()} <c:if test="${district.getDistCode().equalsIgnoreCase(Users.getDistCode())}"> selected </c:if>> ${district.getDistName()}  </option>
-                        </c:forEach>
                     </select>
                 </div>
-
-
-<!--                <div class="checkbox mb-3">
-                    <label>
-                        <input type="checkbox" value="remember-me"> Remember me
-                    </label>
-                </div>-->
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Sign Up</button>
                 <a href="landingPage.jsp">
                     <button type="button" class="w-100 btn btn-lg btn-warning">Cancel</button>
                 </a>
             </form>
-<!--            <p id="demo"></p>-->
         </main>
 
 

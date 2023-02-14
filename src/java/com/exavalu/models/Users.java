@@ -50,10 +50,10 @@ public class Users extends ActionSupport implements ApplicationAware, SessionAwa
         String result = "FAILURE";
 
         boolean success = LoginService.getInstance().doLogin(this);
-        
+
         if (success) {
             System.out.println("Returning Success from doLogin method");
-            
+
             sessionMap.put("Loggedin", this);
             ArrayList empList = EmployeeService.getInstance().getAllEmployees();
             sessionMap.put("EmpList", empList);
@@ -64,34 +64,45 @@ public class Users extends ActionSupport implements ApplicationAware, SessionAwa
 
         return result;
     }
-    
-    public String doPreSignUp() throws Exception{
+
+    public String doPreSignUp() throws Exception {
         String result = "SUCCESS";
         ArrayList countryList = LoginService.getInstance().getAllCountries();
-        
+
         sessionMap.put("CountryList", countryList);
         //sessionMap.put("Users", this);
-        System.err.println("Country code = "+this.countryCode);
-        
-        
-        if(this.countryCode != null){
+        System.err.println("Country code = " + this.countryCode);
+
+//        if(this.countryCode != null){
+//            ArrayList stateList = LoginService.getInstance().getAllStates(this.countryCode);
+//            sessionMap.put("StateList", stateList);
+//            sessionMap.put("Users", this);
+//        }
+//        if(this.countryCode != null && this.stateCode != null){
+//            ArrayList districtList = LoginService.getInstance().getAllDistricts(this.stateCode);
+//            sessionMap.put("DistrictList", districtList);
+//            sessionMap.put("Users", this);
+//        }
+        if (this.countryCode != null) {
+            System.err.println("When country is selected, country code: " + this.countryCode);
             ArrayList stateList = LoginService.getInstance().getAllStates(this.countryCode);
             sessionMap.put("StateList", stateList);
             sessionMap.put("Users", this);
+            result = "STATELIST";
         }
-        if(this.countryCode != null && this.stateCode != null){
+        if (this.stateCode != null) {
             ArrayList districtList = LoginService.getInstance().getAllDistricts(this.stateCode);
             sessionMap.put("DistrictList", districtList);
             sessionMap.put("Users", this);
+            result = "DISTRICTLIST";
         }
-        
-        
+
         return result;
     }
-    
+
     public String doSignUp() throws Exception {
         String result = "FAILURE";
-        
+
         boolean success = LoginService.getInstance().doSignUp(this);
 
         if (success) {
@@ -105,7 +116,7 @@ public class Users extends ActionSupport implements ApplicationAware, SessionAwa
         return result;
 
     }
-    
+
     public String doLogout() {
         String result = "SUCCESS";
         sessionMap.clear();
@@ -153,8 +164,6 @@ public class Users extends ActionSupport implements ApplicationAware, SessionAwa
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-    
 
     /**
      * @return the password
