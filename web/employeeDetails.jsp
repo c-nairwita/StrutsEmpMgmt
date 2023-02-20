@@ -25,11 +25,14 @@
         <link href="css/product.css" rel="stylesheet">
         <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     </head>
+    
     <body style="background-color: #FFF5EE">
 
         <jsp:include page="menu.jsp"></jsp:include>
         
-            <h5>Select Number Of Rows:</h5>
+        <div id="my-div"></div>
+
+<!--            <h5>Select Number Of Rows:</h5>
             <div class="form-group">
                 <select class  ="form-control" name="state" id="maxRows">
                     <option value="5000">Show ALL Rows</option>
@@ -44,52 +47,52 @@
             </div>
 
 
-        <table class="table table-hover table-bordered table-striped-columns text-center" id="table-id">
-            <thead> 
-                <tr>
-                    <th>
-                        Employee Id
-                    </th>
-                    <th>
-                        First Name
-                    </th>
-                    <th>
-                        Last Name
-                    </th>
-                    <th>
-                        Address
-                    </th>
-                    <th>
-                        Phone
-                    </th>
-                    <th>
-                        Gender
-                    </th>
-                    <th>
-                        Age
-                    </th>
-                    <th>
-                        Department Name  
-                    </th>
-                    <th>
-                        Role Name  
-                    </th>
-                    <th>
-                        Basic Salary
-                    </th>
-                    <th>
-                        Car Allowance
-                    </th>
-                    <th>
-                        Special Allowance
-                    </th>
-                    <th>
-                        Action
-                    </th>
+            <table class="table table-hover table-bordered table-striped-columns text-center" id="table-id">
+                <thead> 
+                    <tr>
+                        <th>
+                            Employee Id
+                        </th>
+                        <th>
+                            First Name
+                        </th>
+                        <th>
+                            Last Name
+                        </th>
+                        <th>
+                            Address
+                        </th>
+                        <th>
+                            Phone
+                        </th>
+                        <th>
+                            Gender
+                        </th>
+                        <th>
+                            Age
+                        </th>
+                        <th>
+                            Department Name  
+                        </th>
+                        <th>
+                            Role Name  
+                        </th>
+                        <th>
+                            Basic Salary
+                        </th>
+                        <th>
+                            Car Allowance
+                        </th>
+                        <th>
+                            Special Allowance
+                        </th>
+                        <th>
+                            Action
+                        </th>
                 </thead>    
             </tr>
-            
-        <tbody>
+
+            <tbody>
             <c:forEach var="emp" items="${EmpList}">
                 <tr>
                     <td>
@@ -137,9 +140,9 @@
             </c:forEach>
         </tbody>
     </table>
-    
-    <jsp:include page="pagination.jsp"></jsp:include>
 
-    <script src="pagination.js"></script>
+    <%--<jsp:include page="pagination.jsp"></jsp:include>--%>
+
+    <script src="pagination.js"></script>-->
 </body>
 </html>

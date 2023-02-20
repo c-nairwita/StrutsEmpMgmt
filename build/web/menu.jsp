@@ -10,6 +10,48 @@
         <link href="css/header.css" rel="stylesheet">
         <!--<link href="css/carousel.css" rel="stylesheet">-->
     </head>
+    <script src="https://code.jquery.com/jquery-3.6.3.js" 
+                        integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" 
+                        crossorigin="anonymous">
+    </script>
+    <script>
+
+        $(document).ready(function () {
+            $('#my-link').click(function () {
+                $.ajax({
+                    url: 'showall.jsp',
+                    success: function (data) {
+                        $('#my-div').html(data);
+                    }
+                });
+                return false; 
+            });
+        });
+        
+        $(document).ready(function () {
+            $('#my-link1').click(function () {
+                $.ajax({
+                    url: 'addEmployee.jsp',
+                    success: function (data) {
+                        $('#my-div').html(data);
+                    }
+                });
+                return false; 
+            });
+        });
+        $(document).ready(function () {
+            $('#my-link2').click(function () {
+                $.ajax({
+                    url: 'searchEmployee.jsp',
+                    success: function (data) {
+                        $('#my-div').html(data);
+                    }
+                });
+                return false; 
+            });
+        });
+    </script>
+    
     <header class="site-header sticky-top p-3 text-bg-dark">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -19,18 +61,10 @@
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="landingPage.jsp" class="nav-link px-2 text-secondary">Home</a></li>
-                    <li><a href="addEmployee.jsp" class="nav-link px-2 text-white">Add</a></li>
-                    <li><a href="searchEmployee.jsp" class="nav-link px-2 text-white">Search</a></li>
-                    <li><a href="editEmployee.jsp" class="nav-link px-2 text-white">Update</a></li>
+                    <li><a href="#" id="my-link1" class="nav-link px-2 text-white">Add</a></li>
+                    <li><a href="#" id="my-link2" class="nav-link px-2 text-white">Search</a></li>
+                    <li><a href="#" id="my-link" class="nav-link px-2 text-white">Show All</a></li>
                     <li><a href="ConsumeAPI" class="nav-link px-2 text-white">Get API Data</a></li>
-<!--                    <li><a class="nav-link px-2 text-white" href="#">
-                            <c:if test="${not empty Users}">
-                                Welcome: 
-                                <c:out value = "${users.getFirstName()}"/>
-                                <c:out value = "${users.getLastName()}"/>
-                            </c:if>
-                        </a>
-                    </li>-->
                 </ul>
 
                 <div class="text-end">
@@ -57,3 +91,5 @@
             </div>
         </div>
     </header>
+                    
+</html>

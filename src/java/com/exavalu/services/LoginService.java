@@ -13,7 +13,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import org.apache.log4j.Appender;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -59,7 +63,8 @@ public class LoginService {
             }
             
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            int errorVal = ex.getErrorCode();
+            System.out.println(errorVal);
         }
         
         
@@ -95,7 +100,8 @@ public class LoginService {
             }
 
         } catch (SQLException ex) {
-           ex.printStackTrace();
+           Logger log = Logger.getLogger(LoginService.class.getName());
+           log.error(LocalDateTime.now() + " " + ex.getMessage());
         }
         
         return result; 
@@ -138,8 +144,7 @@ public class LoginService {
             Connection con = JDBCConnectionManager.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1,countryCode);
-//            System.err.println(countryCode);
-//            System.err.println(sql);
+
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {

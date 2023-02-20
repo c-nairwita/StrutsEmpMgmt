@@ -29,14 +29,14 @@
         </action>  
         <action name="EditEmployee" class="com.exavalu.models.Employee" method="doEditEmployee">
             <result name="SUCCESS">editEmployee.jsp</result>
-            <result name="FAILURE">employeeDetails.jsp</result>
+            <result name="FAILURE">showall.jsp</result>
         </action> 
         <action name="SaveEmployee" class="com.exavalu.models.Employee" method="doSaveEmployee">
             <result name="SUCCESS">employeeDetails.jsp</result>
             <result name="FAILURE">editEmployee.jsp</result>
         </action>
         <action name="DeleteEmployee" class="com.exavalu.models.Employee" method="doDeleteEmployee">
-            <result name="SUCCESS">employeeDetails.jsp</result>
+            <result name="SUCCESS">showall.jsp</result>
             <result name="FAILURE">employeeDetails.jsp</result>
         </action>
         <action name="AddEmployee" class="com.exavalu.models.Employee" method="doAddEmployee">

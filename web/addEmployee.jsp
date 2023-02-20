@@ -14,13 +14,39 @@
         <link href="css/bootstrap.min.css" rel="stylesheet" >
         <title>Add Employee Details</title>
     </head>
-    <body class="text-center" style="background-color: #FFF5EE">
+<!--    <script src="https://code.jquery.com/jquery-3.6.3.js" 
+                        integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" 
+                        crossorigin="anonymous">
+    </script>
+    <script>
 
+        $(document).ready(function () {
+            $('form').submit(function (event) {
+                
+                event.preventDefault(); // prevent default form submission
+                var formData = $(this).serialize();
+                alert(formData);
+                $.ajax({
+                    type: $(this).attr('post'),
+                    url: $(this).attr('AddEmployee'),
+                    data: formData,
+                    success: function (responseText) {
+                        alert(responseText);
+                        $('#addedEmp').html(responseText);
+                    }
+                });
+                return false; // prevent the form from submitting again
+            });
+        });
+
+    </script>-->
+    <!--<div id="addedEmp"></div>-->
+    <body class="text-center" style="background-color: #FFF5EE">
         <div class="container">
             <c:if test="${not empty SuccessMsg}">
                 <h1 style="color: darkgreen"><c:out value="${SuccessMsg}"/></h1>
                 <c:remove var="SuccessMsg" scope="session"/>
-                <% response.setHeader("Refresh", "3;url=employeeDetails.jsp");%>
+                <% response.setHeader("Refresh", "3;url=showall.jsp");%>
             </c:if>
             <c:if test="${not empty ErrorMsg}">
                 <h1 style="color: red"><c:out value="${ErrorMsg}"/></h1>

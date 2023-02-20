@@ -9,8 +9,10 @@ import com.exavalu.services.LoginService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Map;
+import org.apache.log4j.Logger;
 import org.apache.struts2.dispatcher.ApplicationMap;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.ApplicationAware;
@@ -60,6 +62,10 @@ public class Users extends ActionSupport implements ApplicationAware, SessionAwa
             result = "SUCCESS";
         } else {
             System.out.println("Returning Failure from doLogin method");
+            
+            Logger log = Logger.getLogger(Users.class.getName());
+            log.error(LocalDateTime.now() + " Wrong username or password");
+            
         }
 
         return result;
@@ -72,17 +78,7 @@ public class Users extends ActionSupport implements ApplicationAware, SessionAwa
         sessionMap.put("CountryList", countryList);
         //sessionMap.put("Users", this);
         System.err.println("Country code = " + this.countryCode);
-
-//        if(this.countryCode != null){
-//            ArrayList stateList = LoginService.getInstance().getAllStates(this.countryCode);
-//            sessionMap.put("StateList", stateList);
-//            sessionMap.put("Users", this);
-//        }
-//        if(this.countryCode != null && this.stateCode != null){
-//            ArrayList districtList = LoginService.getInstance().getAllDistricts(this.stateCode);
-//            sessionMap.put("DistrictList", districtList);
-//            sessionMap.put("Users", this);
-//        }
+        
         if (this.countryCode != null) {
             System.err.println("When country is selected, country code: " + this.countryCode);
             ArrayList stateList = LoginService.getInstance().getAllStates(this.countryCode);
@@ -111,6 +107,7 @@ public class Users extends ActionSupport implements ApplicationAware, SessionAwa
 
         } else {
             sessionMap.put("FailSignUp", "Please Try Again");
+            
         }
         System.out.println(sessionMap);
         return result;

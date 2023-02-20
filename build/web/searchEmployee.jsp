@@ -25,13 +25,55 @@
                 <link href="css/menu_css.css" rel="stylesheet">
                 <link href="css/login.css" rel="stylesheet">-->
     </head>
+<!--    <script src="https://code.jquery.com/jquery-3.6.3.js" 
+                        integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" 
+                        crossorigin="anonymous">
+    </script>
+    <script>
+
+//        document.querySelector('#my-form').addEventListener('submit', function (event) {
+//            event.preventDefault(); // prevent the default form submission behavior
+//
+//            // send an HTTP request using Ajax
+//            var xhr = new XMLHttpRequest();
+//            xhr.open('GET', 'http://localhost:8080/StrutsEmpMgmt/SearchEmployee', true);
+//            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+//            xhr.onload = function () {
+//                if (xhr.status === 200) {
+//                    // update the page content with the response from the server
+//                    document.querySelector('#table-id').innerHTML = xhr.responseText;
+//                }
+//            };
+//            var formData = new FormData(document.querySelector('#my-form'));
+//            xhr.send(new URLSearchParams(formData));
+//        });
+
+        $(document).ready(function() {
+            $('#my-form').submit(function(e) {
+                e.preventDefault(); // prevent the form from submitting normally
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'searchEmployee.jsp', // replace with the URL of your form processing script
+                    data: $('#my-form').serialize(), // serialize the form data
+                    success: function(data) {
+                        alert(data);
+                        $('#searchedEmp').html(data); 
+                    }
+                });
+            });
+        };
+        );
+
+    </script>-->
     <body class="text-center" style="background-color: #FFF5EE">
         <%--<jsp:include page="menu.jsp"></jsp:include>--%>
+        <!--<main id="my-div">-->
         <div class="">
             <h2 class="card-title">Enter Details</h2>
             <br>
         </div>
-        <form class="form-inline" action="SearchEmployee" method="get" >
+        <form id="my-form" class="form-inline" action="SearchEmployee" method="get" >
             <div class="container" >
                 <div class="row">
                     <div class="form-control col-sm">
@@ -64,14 +106,14 @@
                         </select>
                     </div>                   
                     <div class="form-control col-sm">
-                        <button type="submit" style="background-color: #301934; border: none" class="form-control btn btn-primary mb-2">Search</button>
+                        <button type="submit" id="submit_button" style="background-color: #301934; border: none" class="form-control btn btn-primary mb-2">Search</button>
                     </div>
                 </div>
             </div>
-        </form>         
+        </form>  
         <c:if test="${not empty EmpList}">
             <div class="table-responsive justify-content-between">
-                <table class="table table-hover table-striped-columns table-bordered text-center">
+                <table id="table-id" class="table table-hover table-striped-columns table-bordered text-center">
                     <thead>
                         <tr>
                             <th>Employee Id</th>
@@ -104,7 +146,7 @@
                                 <td>${emp.getBasicSalary()}</td>
                                 <td>${emp.getCarAllowance()}</td>
                                 <td>${emp.getSpecialAllowance()}</td>
-<!--                                <td>
+                                <!-- <td>
                                     <a href="EditEmployee?employeeId=${emp.getEmployeeId()}">Edit</a>
                                     <a href="DeleteEmployee?employeeId=${emp.getEmployeeId()}">Delete</a>
                                 </td>-->
@@ -114,5 +156,6 @@
                 </table>
             </div>
         </c:if>
+        </main>
     </body>
 </html>
